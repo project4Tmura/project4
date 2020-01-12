@@ -1,11 +1,6 @@
-
 #include <iostream>
 #include "Pair.h"
-// Pair::Pair(){
-//     this -> node = 0;
-//     this -> edge = 'a';
 
-// }
 Pair::Pair(int node, char edge){
     this -> node = node;
     this -> edge = edge;
