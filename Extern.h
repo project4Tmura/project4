@@ -1,3 +1,7 @@
+//----------------------------------------------------------------------------------------
+// This file define the extern functions we will call from the c# project
+//----------------------------------------------------------------------------------------
+
 #include "Automaton.h"    
 #include "Search.h"
 
@@ -11,6 +15,7 @@ extern "C" {
 
 	extern __declspec(dllexport) int do_searchWords(Search* search, char** array, int arraySize, char* text);
 
+	
 
 #ifdef __cplusplus
 }

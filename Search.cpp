@@ -6,11 +6,13 @@ Search::Search(Automaton* a) {
 
 // This function finds all occurrences of all array words 
 // in text. 
-int Search::searchWords(char** arr, int k, char* text)
+int Search::searchWords(char** arr, int num_of_errors, char* text)
 {
-	
-	int* exist_errors = new int[k];
-	memset(exist_errors, 0, sizeof exist_errors);
+
+	int* exist_errors = new int[num_of_errors];
+	for (int i = 0; i < num_of_errors; i++) {
+		exist_errors[i] = 0;
+	}
 	// Initialize current state 
 	int currentState = 0;
 	const string& textref = text;
@@ -28,7 +30,7 @@ int Search::searchWords(char** arr, int k, char* text)
 
 		// Match found, print all matching words of arr[] 
 		// using output function. 
-		for (int j = 0; j < k; ++j)
+		for (int j = 0; j < num_of_errors; ++j)
 		{
 
 			if (a->out[currentState] & (1 << j))
@@ -37,9 +39,9 @@ int Search::searchWords(char** arr, int k, char* text)
 				exist_errors[j] = 1;
 
 
-			//	const string& word = arr[j];
-			//	cout << "The known error " << arr[j] << " appears from "
-			//		<< i - word.size() + 1 << " to " << i << endl;
+				//	const string& word = arr[j];
+				//	cout << "The known error " << arr[j] << " appears from "
+				//		<< i - word.size() + 1 << " to " << i << endl;
 			}
 
 		}
@@ -47,14 +49,18 @@ int Search::searchWords(char** arr, int k, char* text)
 	}
 
 	//removing the not existing errors from the array
-	for (int i = 0; i < k; i++)
+	for (int i = 0; i < num_of_errors; i++)
 	{
 		if (exist_errors[i] == 0) {
 			const string& word = arr[i];
-			strcpy_s( arr[i], word.size(), "-1");
+			strcpy_s(arr[i], word.size(), "-1");
 		}
-			
-	}
 
+	}
+	delete[] exist_errors;
 	return 0;
+}
+
+void Search::delete_outomat() {
+	delete a;//delete the outomat;
 }
