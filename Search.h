@@ -11,6 +11,7 @@ private:
 public:
 	Search(Automaton* a);
 	int searchWords(char** arr, int k, char* text);
+	void delete_outomat();
 };
 
 #endif

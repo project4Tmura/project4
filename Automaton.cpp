@@ -5,8 +5,8 @@ Automaton::Automaton(char** arr, int length) {
 	buildAutomat(arr, length);
 }
 
-// Builds the string matching machine. 
-// arr -   array of words. The index of each keyword is important: 
+// Builds the outomat. 
+// arr -   array of known errors. The index of each keyword is important: 
 //         "out[state] & (1 << i)" is > 0 if we just found word[i] 
 //         in the text. 
 // Returns the number of states that the built machine has. 
@@ -40,6 +40,7 @@ int Automaton::buildAutomat(char** arr, int k)
 				g[currentState][ch] = states++;
 
 			currentState = g[currentState][ch];
+
 		}
 
 		// Add current word in output function 
@@ -129,7 +130,5 @@ int Automaton::findNextState(int currentState, char nextInput)
 		answer = f[answer];
 
 	}
-
-
 	return g[answer][ch];
 }
